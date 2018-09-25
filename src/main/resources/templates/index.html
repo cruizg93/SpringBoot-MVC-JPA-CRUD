@@ -1,0 +1,34 @@
+<html>
+
+<body>
+	<form th:action="@{/crearUsuario}" th:object="${usuario}" method="POST">
+		<span th:if="${usuario.id !=null}"><input type="text" th:field="${usuario.id}" readonly></span>
+		<input type="text" placeholder="Usuario" th:field="${usuario.nombreUsuario}"/>
+		<input type="text" placeholder="Nombre" th:field="${usuario.nombreCompleto}"/>
+		<input type="Submit" th:value="${usuario.id != null }?'Guardar Usuario':'Crear Usuario'"/>
+	</form>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Usuario</th>
+				<th>Nombre</th>
+				<th>Actiones</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="usuario : ${usuarios}">
+				<td th:text="${usuario.id}"></td>
+				<td th:text="${usuario.nombreUsuario}"></td>
+				<td th:text="${usuario.nombreCompleto}"></td>
+				<td><a th:href="@{'/editarUsuario/'+ ${usuario.id}}"> Editar </a> | <a th:href="@{'/eliminarUsuario/' + ${usuario.id}}">Eliminar</a></td>
+			</tr>
+		
+		</tbody>
+	
+	
+	</table>
+</body>
+</html>
